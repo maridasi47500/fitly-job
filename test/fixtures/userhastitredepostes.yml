@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  titre_de_poste: one
+
+two:
+  user: two
+  titre_de_poste: two

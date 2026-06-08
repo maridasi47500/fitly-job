@@ -1,0 +1,2 @@
+class TitreDePoste < ApplicationRecord
+end
