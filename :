@@ -1,0 +1,67 @@
+<div id="<%= dom_id emploi %>">
+<p>Entreprise nom</p>
+<p>publié il y a un mois</p>
+  <p>
+    <strong>Titre de poste:</strong>
+    <%= emploi.titre_de_poste.name %>
+  </p>
+
+  <p>
+    <strong>Localisation:</strong>
+    <%= emploi.localisation.name %>
+  </p>
+
+  <p>
+    <strong>
+<%if current_user.type_de_localisations.length == 0%>
+&quest;
+<%elsif current_user.type_de_localisation_ids.include?(emploi.type_de_localisation_id) %>
+&#9989;
+<%else%>
+&#10060;
+<%end%>
+
+Type de localisation:</strong>
+    <%= emploi.type_de_localisation.name %>
+<br>
+<%if current_user.type_de_localisations.length == 0%>
+Préféré :  Non spécifié
+<%elsif current_user.type_de_localisation_ids.include?(emploi.type_de_localisation_id)%>
+Préféré : 
+    <%= emploi.type_de_localisation.name %>
+<%else%>
+Préféré : 
+    <%= current_user.type_de_localisations.pluck(:name).to_sentence %>
+<%end%>
+  </p>
+
+  <p>
+    <strong>Emploi type:</strong>
+    <%= emploi.emploi_type.name %>
+  </p>
+
+  <p>
+    <strong>Niveau experience:</strong>
+    <%= emploi.niveau_experience.name %>
+  </p>
+
+  <p>
+    <strong>Annees experience:</strong>
+    <%= emploi.annees_experience %>
+  </p>
+
+  <p>
+    <strong>
+
+<%if emploi.fourchette_salaire > current_user.fourchette_salaire.to_i%>
+&#9989;
+<%else%>
+&#10060;
+<%end%>
+Fourchette salaire:</strong>
+    <%= emploi.fourchette_salaire %>
+<br>
+Préféré : <%=current_user.fourchette_salaire%>€
+  </p>
+
+</div>

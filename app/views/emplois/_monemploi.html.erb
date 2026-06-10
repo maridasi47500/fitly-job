@@ -1,0 +1,128 @@
+<div id="<%= dom_id emploi %>">
+<p>Entreprise nom</p>
+<p>publié il y a un mois</p>
+  <p>
+    <strong>Titre de poste:</strong>
+    <%= emploi.titre_de_poste.name %>
+  </p>
+
+  <p>
+    <strong>Localisation:</strong>
+    <%= emploi.localisation.name %>
+  </p>
+
+  <p>
+    <strong>
+<%if current_user.type_de_localisations.length == 0%>
+&quest;
+<%elsif current_user.type_de_localisation_ids.include?(emploi.type_de_localisation_id) %>
+&#9989;
+<%else%>
+&#10060;
+<%end%>
+
+Type de localisation:</strong>
+    <%= emploi.type_de_localisation.name %>
+<br>
+<%if current_user.type_de_localisations.length == 0%>
+Préféré :  Non spécifié
+<%elsif current_user.type_de_localisation_ids.include?(emploi.type_de_localisation_id)%>
+Préféré : 
+    <%= emploi.type_de_localisation.name %>
+<%else%>
+Préféré : 
+    <%= current_user.type_de_localisations.pluck(:name).to_sentence %>
+<%end%>
+  </p>
+
+  <p>
+    <strong>
+<%if current_user.emploi_types.length == 0%>
+&quest;
+<%elsif current_user.emploi_type_ids.include?(emploi.emploi_type_id) %>
+&#9989;
+<%else%>
+&#10060;
+<%end%>
+
+Emploi type:</strong>
+    <%= emploi.emploi_type.name %>
+<br>
+<%if current_user.emploi_types.length == 0%>
+Préféré :  Non spécifié
+<%else%>
+Préféré :  
+
+    <%= current_user.emploi_types.pluck(:name).to_sentence %>
+<%end%>
+  </p>
+
+  <p>
+    <strong>
+<%if current_user.niveau_experiences.length == 0%>
+&quest;
+<%elsif current_user.niveau_experience_ids.include?(emploi.niveau_experience_id) %>
+&#9989;
+<%else%>
+&#10060;
+<%end%>
+
+Niveau experience:</strong>
+    <%= emploi.niveau_experience.name %>
+<br>
+<%if current_user.niveau_experiences.length == 0%>
+Préféré :  Non spécifié
+<%else%>
+Préféré :  
+
+    <%= current_user.niveau_experiences.pluck(:name).to_sentence %>
+<%end%>
+  </p>
+
+  <p>
+    <strong>
+<%if current_user.annees_experience.nil?%>
+&quest;
+<%elsif emploi.annees_experience <= current_user.annees_experience.to_i%>
+&#9989;
+<%else%>
+&#10060;
+<%end%>
+
+    <%= emploi.annees_experience %>+
+Années d'expérience
+
+</strong>
+
+<br>
+<%if current_user.annees_experience.nil?%>
+
+Préféré :  Non spécifié
+<%else%>
+Préféré : 
+    <%= current_user.annees_experience %>+
+Années d'expérience
+<%end%>
+  </p>
+
+  <p>
+    <strong>
+
+<%if current_user.fourchette_salaire.nil?%>
+&quest;
+<%elsif emploi.fourchette_salaire > current_user.fourchette_salaire.to_i%>
+&#9989;
+<%else%>
+&#10060;
+<%end%>
+Fourchette salaire:</strong>
+    <%= emploi.fourchette_salaire %>
+<br>
+<%if current_user.fourchette_salaire.nil?%>
+Préféré :  Non spécifié
+<%else%>
+Préféré : <%=current_user.fourchette_salaire%>€
+<%end%>
+  </p>
+
+</div>

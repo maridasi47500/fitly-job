@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @emploi %>
+<%= render partial: "emplois/monemploi", as: :emploi,  collection: [@emploi] %>
 
 <div>
   <%= link_to "Edit this emploi", edit_emploi_path(@emploi) %> |
