@@ -59,24 +59,24 @@ Préféré :
 
   <p>
     <strong>
-<%if current_user.niveau_experiences.length == 0%>
+<%#if current_user.niveau_experiences.length == 0%>
 &quest;
-<%elsif current_user.niveau_experience_ids.include?(emploi.niveau_experience_id) %>
+<%#elsif current_user.niveau_experience_ids.include?(emploi.niveau_experience_id) %>
 &#9989;
-<%else%>
+<%#else%>
 &#10060;
-<%end%>
+<%#end%>
 
 Niveau experience:</strong>
     <%= emploi.niveau_experience.name %>
 <br>
-<%if current_user.niveau_experiences.length == 0%>
+<%#if current_user.niveau_experiences.length == 0%>
 Préféré :  Non spécifié
-<%else%>
+<%#else%>
 Préféré :  
 
-    <%= current_user.niveau_experiences.pluck(:name).to_sentence %>
-<%end%>
+    <%#= current_user.niveau_experiences.pluck(:name).to_sentence %>
+<%#end%>
   </p>
 
   <p>
