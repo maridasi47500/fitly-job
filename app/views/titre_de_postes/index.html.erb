@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Titre de postes</h1>
+
+<div id="titre_de_postes">
+  <% @titre_de_postes.each do |titre_de_poste| %>
+    <%= render titre_de_poste %>
+    <p>
+      <%= link_to "Show this titre de poste", titre_de_poste %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New titre de poste", new_titre_de_poste_path %>

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :localisations
+  resources :titre_de_postes
+  resources :emplois
+  get 'welcome/home'
       devise_for :users, controllers: {
         sessions: 'users/sessions',
         registrations: 'users/registrations'
@@ -11,5 +15,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  root "users/registrations#edit"
+  root "welcome#home"
 end

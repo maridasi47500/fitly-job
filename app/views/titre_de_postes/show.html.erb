@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @titre_de_poste %>
+
+<div>
+  <%= link_to "Edit this titre de poste", edit_titre_de_poste_path(@titre_de_poste) %> |
+  <%= link_to "Back to titre de postes", titre_de_postes_path %>
+
+  <%= button_to "Destroy this titre de poste", @titre_de_poste, method: :delete %>
+</div>

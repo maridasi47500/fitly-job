@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  titre_de_poste: one
+  localisation: one
+  type_de_localisation: one
+  emploi_type: one
+  niveau_experience: one
+  annees_experience: 1
+  fourchette_salaire: 1
+
+two:
+  titre_de_poste: two
+  localisation: two
+  type_de_localisation: two
+  emploi_type: two
+  niveau_experience: two
+  annees_experience: 1
+  fourchette_salaire: 1

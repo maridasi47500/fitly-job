@@ -1,0 +1,81 @@
+<%= form_with(model: emploi) do |form| %>
+  <% if emploi.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(emploi.errors.count, "error") %> prohibited this emploi from being saved:</h2>
+
+      <ul>
+        <% emploi.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+<b>
+    <%= form.label :titre_de_poste_id, "Titre de poste", style: "display: block" %>
+</b>
+    <%= form.collection_radio_buttons :titre_de_poste_id, TitreDePoste.all, :id, :name %>
+  </div>
+
+  <div>
+<b>
+    <%= form.label :localisation_id, "Localisation", style: "display: block" %>
+</b>
+    <%= form.collection_radio_buttons :localisation_id, Localisation.all, :id, :name %>
+  </div>
+
+  <div>
+<b>
+    <%= form.label :type_de_localisation_id, "Type de localisation", style: "display: block" %>
+</b>
+    <%= form.collection_radio_buttons :type_de_localisation_id, TypeDeLocalisation.all, :id, :name %>
+  </div>
+
+  <div>
+<b>
+    <%= form.label :emploi_type_id, "Type d'emploi", style: "display: block" %>
+</b>
+    <%= form.collection_radio_buttons :emploi_type_id, EmploiType.all, :id, :name %>
+  </div>
+
+  <div>
+<b>
+    <%= form.label :niveau_experience_id, "Niveau d'expérience", style: "display: block" %><p>
+</b>
+    Débutant : 0 à 1 an d'expérience
+<br>
+
+    Junior : 2 à 4 ans d'expérience
+<br>
+
+    Confirmé : 5 à 7 ans d'expérience
+<br>
+
+    Senior : 7 à 10 ans d'expérience et plus
+<br>
+
+Ces repères méritent d'être nuancés : dans certains secteurs comme la tech ou le conseil, un professionnel peut atteindre le statut de senior dès 5 à 6 ans s'il a travaillé sur des projets complexes et variés. À l'inverse, dans des métiers plus traditionnels (comptabilité, juridique), le seuil de 10 ans reste souvent la référence.
+
+</p>
+    <%= form.collection_radio_buttons :niveau_experience_id, NiveauExperience.all, :id, :name %>
+  </div>
+
+  <div>
+<b>
+    <%= form.label :annees_experience, "Années d'expérience", style: "display: block" %>
+</b>
+    <%= form.number_field :annees_experience %>
+  </div>
+
+  <div>
+<b>
+    <%= form.label :fourchette_salaire, "Fourchette de salaire", style: "display: block" %>
+</b>
+    <%= form.number_field :fourchette_salaire %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

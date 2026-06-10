@@ -10,11 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_06_08_220514) do
+ActiveRecord::Schema[7.1].define(version: 2026_06_09_211714) do
   create_table "emploi_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "emplois", force: :cascade do |t|
+    t.integer "titre_de_poste_id", null: false
+    t.integer "localisation_id", null: false
+    t.integer "type_de_localisation_id", null: false
+    t.integer "emploi_type_id", null: false
+    t.integer "niveau_experience_id", null: false
+    t.integer "annees_experience"
+    t.integer "fourchette_salaire"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["emploi_type_id"], name: "index_emplois_on_emploi_type_id"
+    t.index ["localisation_id"], name: "index_emplois_on_localisation_id"
+    t.index ["niveau_experience_id"], name: "index_emplois_on_niveau_experience_id"
+    t.index ["titre_de_poste_id"], name: "index_emplois_on_titre_de_poste_id"
+    t.index ["type_de_localisation_id"], name: "index_emplois_on_type_de_localisation_id"
   end
 
   create_table "localisations", force: :cascade do |t|
@@ -41,6 +58,42 @@ ActiveRecord::Schema[7.1].define(version: 2026_06_08_220514) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "userhasemploitypes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "emploi_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["emploi_type_id"], name: "index_userhasemploitypes_on_emploi_type_id"
+    t.index ["user_id"], name: "index_userhasemploitypes_on_user_id"
+  end
+
+  create_table "userhaslocalisations", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "localisation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["localisation_id"], name: "index_userhaslocalisations_on_localisation_id"
+    t.index ["user_id"], name: "index_userhaslocalisations_on_user_id"
+  end
+
+  create_table "userhastitredepostes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "titre_de_poste_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["titre_de_poste_id"], name: "index_userhastitredepostes_on_titre_de_poste_id"
+    t.index ["user_id"], name: "index_userhastitredepostes_on_user_id"
+  end
+
+  create_table "userhastypedelocalisations", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "type_de_localisation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type_de_localisation_id"], name: "index_userhastypedelocalisations_on_type_de_localisation_id"
+    t.index ["user_id"], name: "index_userhastypedelocalisations_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "nom", default: "", null: false
     t.string "phone", default: "", null: false
@@ -59,4 +112,17 @@ ActiveRecord::Schema[7.1].define(version: 2026_06_08_220514) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "emplois", "emploi_types"
+  add_foreign_key "emplois", "localisations"
+  add_foreign_key "emplois", "niveau_experiences"
+  add_foreign_key "emplois", "titre_de_postes"
+  add_foreign_key "emplois", "type_de_localisations"
+  add_foreign_key "userhasemploitypes", "emploi_types"
+  add_foreign_key "userhasemploitypes", "users"
+  add_foreign_key "userhaslocalisations", "localisations"
+  add_foreign_key "userhaslocalisations", "users"
+  add_foreign_key "userhastitredepostes", "titre_de_postes"
+  add_foreign_key "userhastitredepostes", "users"
+  add_foreign_key "userhastypedelocalisations", "type_de_localisations"
+  add_foreign_key "userhastypedelocalisations", "users"
 end

@@ -21,12 +21,13 @@
       <div class="navbar-nav">
 
 <%if user_signed_in?%>
-        <a class="nav-link active" aria-current="page" href="/users/edit">Emplois</a>
-        <a class="nav-link" href="#">Features</a>
-        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link active" aria-current="page" href="/">Emplois</a>
+        <a class="nav-link" href="/emplois/new">Ajouter un emploi</a>
+        <a class="nav-link" href="<%=new_titre_de_poste_path%>">Ajouter des titres de poste</a>
+        <a class="nav-link" href="<%=new_localisation_path%>">Ajouter des localisations pour un poste</a>
         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
 
-<%= button_to "se déconnecter", {:controller=> "user_sessions", :action=> "destroy"}, :method => :delete%>
+<%= button_to "se déconnecter", {:controller=> "users/sessions", :action=> "destroy"}, :method => :delete%>
 
 <%end%>
       </div>

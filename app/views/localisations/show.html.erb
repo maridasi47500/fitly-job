@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @localisation %>
+
+<div>
+  <%= link_to "Edit this localisation", edit_localisation_path(@localisation) %> |
+  <%= link_to "Back to localisations", localisations_path %>
+
+  <%= button_to "Destroy this localisation", @localisation, method: :delete %>
+</div>
