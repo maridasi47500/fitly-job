@@ -65,6 +65,6 @@ class EmploisController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def emploi_params
-      params.require(:emploi).permit(:titre_de_poste_id, :localisation_id, :type_de_localisation_id, :emploi_type_id, :niveau_experience_id, :annees_experience, :fourchette_salaire)
+      params.require(:emploi).permit(:titre_de_poste_id, :localisation_id, :type_de_localisation_id, :emploi_type_id, :niveau_experience_id, :annees_experience, :fourchette_salaire, :entreprise, :description)
     end
 end

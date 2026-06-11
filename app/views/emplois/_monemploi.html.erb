@@ -1,14 +1,30 @@
 <div id="<%= dom_id emploi %>">
 <p>Entreprise nom</p>
-<p>publié il y a un mois</p>
+<p>publié <%=time_ago_in_words(emploi.created_at)%></p>
   <p>
     <strong>Titre de poste:</strong>
     <%= emploi.titre_de_poste.name %>
   </p>
 
   <p>
-    <strong>Localisation:</strong>
+    <strong>
+<%if current_user.localisations.length == 0%>
+&quest;
+<%elsif current_user.localisation_ids.include?(emploi.localisation_id) %>
+&#9989;
+<%else%>
+&#10060;
+<%end%>
+
+Localisation:</strong>
     <%= emploi.localisation.name %>
+<br>
+<%if current_user.localisations.length == 0%>
+Préféré :  Non spécifié
+<%else%>
+Préféré : 
+    <%= current_user.localisations.pluck(:name).to_sentence %>
+<%end%>
   </p>
 
   <p>
@@ -59,24 +75,24 @@ Préféré :
 
   <p>
     <strong>
-<%#if current_user.niveau_experiences.length == 0%>
+<%if current_user.niveau_experiences.length == 0%>
 &quest;
-<%#elsif current_user.niveau_experience_ids.include?(emploi.niveau_experience_id) %>
+<%elsif current_user.niveau_experience_ids.include?(emploi.niveau_experience_id) %>
 &#9989;
-<%#else%>
+<%else%>
 &#10060;
-<%#end%>
+<%end%>
 
 Niveau experience:</strong>
     <%= emploi.niveau_experience.name %>
 <br>
-<%#if current_user.niveau_experiences.length == 0%>
+<%if current_user.niveau_experiences.length == 0%>
 Préféré :  Non spécifié
-<%#else%>
+<%else%>
 Préféré :  
 
     <%#= current_user.niveau_experiences.pluck(:name).to_sentence %>
-<%#end%>
+<%end%>
   </p>
 
   <p>

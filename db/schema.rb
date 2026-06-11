@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_06_09_211714) do
+ActiveRecord::Schema[7.1].define(version: 2026_06_11_213328) do
   create_table "emploi_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -76,6 +76,15 @@ ActiveRecord::Schema[7.1].define(version: 2026_06_09_211714) do
     t.index ["user_id"], name: "index_userhaslocalisations_on_user_id"
   end
 
+  create_table "userhasniveauexperiences", force: :cascade do |t|
+    t.integer "niveau_experience_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["niveau_experience_id"], name: "index_userhasniveauexperiences_on_niveau_experience_id"
+    t.index ["user_id"], name: "index_userhasniveauexperiences_on_user_id"
+  end
+
   create_table "userhastitredepostes", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "titre_de_poste_id", null: false
@@ -121,6 +130,8 @@ ActiveRecord::Schema[7.1].define(version: 2026_06_09_211714) do
   add_foreign_key "userhasemploitypes", "users"
   add_foreign_key "userhaslocalisations", "localisations"
   add_foreign_key "userhaslocalisations", "users"
+  add_foreign_key "userhasniveauexperiences", "niveau_experiences"
+  add_foreign_key "userhasniveauexperiences", "users"
   add_foreign_key "userhastitredepostes", "titre_de_postes"
   add_foreign_key "userhastitredepostes", "users"
   add_foreign_key "userhastypedelocalisations", "type_de_localisations"

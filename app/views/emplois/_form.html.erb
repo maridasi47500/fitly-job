@@ -74,6 +74,18 @@ Ces repères méritent d'être nuancés : dans certains secteurs comme la tech o
 </b>
     <%= form.number_field :fourchette_salaire %>
   </div>
+  <div>
+<b>
+    <%= form.label :entreprise, "Entreprise", style: "display: block" %>
+</b>
+    <%= form.text_field :entreprise %>
+  </div>
+  <div>
+<b>
+    <%= form.label :description, "Description de l'offre d'emploi", style: "display: block" %>
+</b>
+    <%= form.text_area :description, style: "width:100%;" %>
+  </div>
 
   <div>
     <%= form.submit %>
